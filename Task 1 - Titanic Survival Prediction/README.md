@@ -27,9 +27,13 @@ The dataset contains details about passengers such as:
 ⚙️ Technologies Used
 
 =>Python
+
 =>Pandas
+
 =>NumPy
+
 =>Scikit-learn
+
 =>Streamlit
 
 🧠 Model Building
