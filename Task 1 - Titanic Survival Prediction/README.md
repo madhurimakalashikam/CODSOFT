@@ -14,14 +14,23 @@ Source: Kaggle Titanic Dataset
 The dataset contains details about passengers such as:
 
 =>PassengerId
+
 =>Pclass (Ticket class)
+
 =>Name
+
 =>Sex
+
 =>Age
+
 =>SibSp (Number of siblings/spouses aboard)
+
 =>Parch (Number of parents/children aboard)
+
 =>Fare
+
 =>Embarked (Port of Embarkation)
+
 =>Survived (Target variable: 0 = No, 1 = Yes)
 
 ⚙️ Technologies Used
