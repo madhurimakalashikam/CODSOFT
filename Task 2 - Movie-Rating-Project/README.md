@@ -8,31 +8,14 @@ By analyzing historical IMDb India movie data, this model helps estimate how wel
 Objective
 
 =>Analyze historical movie data.
+
 =>Perform data preprocessing and feature engineering.
+
 =>Build and train a regression model.
+
 =>Evaluate model performance.
+
 =>Predict ratings for new or unseen movies.
-
-🗂️ Folder Structure
-
-movie-rating-project/
-├─ data/
-│  ├─ raw/
-│  │  └─ IMDb_India_Movies.csv        # provided dataset
-│  └─ processed/
-│     └─ movies_features.csv          # generated after preprocessing
-├─ models/
-│  └─ rating_model.sav                # trained model saved here
-├─ src/
-│  ├─ data_preprocessing.py           # clean and preprocess raw data
-│  ├─ feature_engineering.py          # feature extraction and transformation
-│  ├─ train.py                        # model training and evaluation
-│  ├─ predict.py                      # prediction script (optional)
-│  ├─ streamlit_app.py                # interactive web interface
-│  └─ api/
-│     └─ app.py                       # API for model access (optional)
-├─ requirements.txt                   # list of dependencies
-└─ README.md                          # project documentation
 
 How to Run the Project
 
@@ -93,14 +76,21 @@ Movie ratings are influenced by multiple factors such as genre popularity, direc
 Ensemble methods like Random Forest provide strong performance for regression problems with mixed features.
 
 Requirements:
+
 pandas
+
 numpy
+
 scikit-learn
+
 joblib
+
 streamlit
 
 Author:
 
 Name: Madhurima Kalashikam
+
 Organization: CODSOFT Internship (Task 2)
+
 Topic: Movie Rating Prediction with Python
