@@ -13,7 +13,6 @@ model = joblib.load(MODEL_PATH)
 
 st.title("IMDb India Movie Rating Predictor")
 
-# List of genre columns expected by the model
 expected_genres = [
     'genre_family', 'genre_musical', 'genre_mystery', 'genre_comedy',
     'genre_horror', 'genre_thriller', 'genre_action', 'genre_drama',
@@ -31,7 +30,6 @@ with st.form("movie_form"):
     st.write("Select genres:")
     selected_genres = []
     for genre in expected_genres:
-        # Display checkbox with cleaned up genre name
         checked = st.checkbox(genre.replace('genre_', '').capitalize())
         if checked:
             selected_genres.append(genre)
@@ -39,7 +37,6 @@ with st.form("movie_form"):
     submitted = st.form_submit_button("Predict")
 
     if submitted:
-        # Build features dictionary with numeric and categorical features
         features = {
             'runtime': runtime,
             'year': year,
@@ -48,11 +45,10 @@ with st.form("movie_form"):
             'director_top': director,
         }
 
-        # Add genre flags: 1 if selected, else 0
         for g in expected_genres:
             features[g] = 1 if g in selected_genres else 0
 
-        # Create DataFrame and predict
         input_df = pd.DataFrame([features])
         pred = model.predict(input_df)[0]
         st.metric("Predicted Rating (IMDb-style)", round(float(pred), 2))
+
