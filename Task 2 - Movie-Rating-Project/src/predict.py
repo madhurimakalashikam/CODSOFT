@@ -1,4 +1,3 @@
-# src/predict.py
 import joblib
 import pandas as pd
 import os
@@ -21,12 +20,12 @@ if __name__ == "__main__":
     'title_len': 12,
     'director_top': 'other',
     
-    # Include all genre columns the model expects
+ 
     'genre_action': 0,
     'genre_adventure': 0,
     'genre_comedy': 0,
     'genre_crime': 0,
-    'genre_drama': 1,        # Only this genre is present
+    'genre_drama': 1,        
     'genre_family': 0,
     'genre_fantasy': 0,
     'genre_horror': 0,
@@ -37,3 +36,4 @@ if __name__ == "__main__":
 }
 
     print("Predicted rating:", predict_one(sample))
+
