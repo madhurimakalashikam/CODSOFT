@@ -1,4 +1,3 @@
-# src/data_preprocessing.py
 import pandas as pd
 import numpy as np
 import os
@@ -21,9 +20,6 @@ def load_raw(path=RAW_PATH):
 def clean(df):
     df = df.copy()
     df = standardize_colnames(df)
-
-    # Common column aliases mapping
-    # Attempt to rename variants to standard ones
     col_map = {}
     if 'title' not in df.columns:
         for c in df.columns:
@@ -48,32 +44,25 @@ def clean(df):
             if 'vote' in c:
                 col_map[c] = 'votes'
     df.rename(columns=col_map, inplace=True)
-
-    # Drop duplicates
     df.drop_duplicates(inplace=True)
 
-    # Convert numeric columns
     for col in ['rating', 'runtime', 'votes', 'year']:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce')
 
-    # Extract year from title if year column missing
     if 'year' not in df.columns and 'title' in df.columns:
         years = df['title'].astype(str).str.extract(r'\((\d{4})\)')
         if years.dropna().shape[0] > 0:
             df['year'] = pd.to_numeric(years[0], errors='coerce')
 
-    # Clean genre string separators: ensure comma separated
     if 'genre' in df.columns:
         df['genre'] = df['genre'].astype(str).str.replace('|', ',').str.strip()
 
-    # Fill missing basic info safely: if rating missing drop because it's target
     if 'rating' in df.columns:
         df = df.dropna(subset=['rating'])
     else:
         raise KeyError("No 'rating' column found in dataset — cannot continue without target.")
 
-    # drop rows with missing director or genre if too many missing
     if 'director' in df.columns:
         df = df.dropna(subset=['director'])
     if 'genre' in df.columns:
@@ -90,3 +79,4 @@ if __name__ == "__main__":
     df_raw = load_raw()
     df_clean = clean(df_raw)
     save(df_clean)
+
