@@ -19,35 +19,43 @@ Objective
 
 How to Run the Project
 
-1️⃣ Install Dependencies
+1️. Install Dependencies
 
 Run the following command in your terminal:
 
 pip install -r requirements.txt
 
-2️⃣ Data Preprocessing
+2️. Data Preprocessing
 
 Clean the IMDb India movie dataset:
 
-python src/data_preprocessing.py
+python src\data_preprocessing.py
 
-3️⃣ Feature Engineering
+3️. Feature Engineering
 
 Generate new features like title length, genre encoding, etc.:
 
-python src/feature_engineering.py
+python src\feature_engineering.py
 
-4️⃣ Model Training
+4️. Model Training
 
 Train and evaluate the model:
 
-python src/train.py
+python src\train.py
 
-5️⃣ Run Streamlit App (optional)
+python -m src.evaluate
+
+5. Model prediction
+
+Predicting the Model:
+
+python src\predict.py
+
+6. Run Streamlit App (optional)
 
 If you built a UI for predictions:
 
-streamlit run src/streamlit_app.py
+streamlit run src\streamlit_app.py
 
 📊 Machine Learning Model
 
