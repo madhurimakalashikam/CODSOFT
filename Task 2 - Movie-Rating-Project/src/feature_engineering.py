@@ -1,4 +1,3 @@
-# src/feature_engineering.py
 import pandas as pd
 import os
 
@@ -14,9 +13,8 @@ def encode_genres(df, top_n=10):
     df = df.copy()
     if 'genre' not in df.columns:
         return df
-    # split genres (assuming comma-separated)
     exploded = df['genre'].str.split(',').apply(lambda g: [x.strip().lower() for x in g] if isinstance(g, list) else [])
-    # find top genres
+
     all_genres = exploded.explode()
     top = all_genres.value_counts().head(top_n).index.tolist()
     for g in top:
@@ -38,10 +36,8 @@ def main():
     df = pd.read_csv(IN_PATH)
     df = encode_genres(df, top_n=12)
     df = top_director(df, top_k=40)
-    # basic derived features
     if 'title' in df.columns:
         df['title_len'] = df['title'].astype(str).str.len()
-    # ensure runtime/year/votes numeric exist
     for col in ['runtime','year','votes']:
         if col not in df.columns:
             df[col] = pd.NA
@@ -51,3 +47,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
