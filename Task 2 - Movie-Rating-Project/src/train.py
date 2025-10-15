@@ -1,5 +1,3 @@
-# src/train.py
-
 import pandas as pd
 import joblib
 import os
@@ -18,11 +16,8 @@ def load_data():
     return df
 
 def select_features(df):
-    # numeric features
     numeric = [c for c in ['runtime','year','votes','title_len'] if c in df.columns]
-    # categorical
     categorical = [c for c in ['director_top'] if c in df.columns]
-    # genre flags
     genres = [c for c in df.columns if c.startswith('genre_')]
     feature_cols = numeric + categorical + genres
     X = df[feature_cols].copy()
@@ -34,12 +29,12 @@ def build_pipeline(numeric, categorical):
         ('scaler', StandardScaler())
     ])
     categorical_transformer = Pipeline(steps=[
-        ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False))  # updated here
+        ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False)) 
     ])
     preprocessor = ColumnTransformer(transformers=[
         ('num', numeric_transformer, numeric),
         ('cat', categorical_transformer, categorical)
-    ], remainder='passthrough')  # pass genre flags through unchanged
+    ], remainder='passthrough')  
 
     model = RandomForestRegressor(n_estimators=200, n_jobs=-1, random_state=42)
     pipeline = Pipeline(steps=[('preprocessor', preprocessor),
@@ -70,3 +65,4 @@ def train():
 
 if __name__ == "__main__":
     train()
+
